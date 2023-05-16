@@ -9,10 +9,16 @@ import { AdminLoginComponent } from './components/admin-login/admin-login.compon
 import { DropdownDirectives } from './helpers/dropdown-directive';
 import { AuthService } from './services/auth.service';
 import { ApiService } from './services/api.service';
-import { RouteGuards } from './services/RouteGuardsService';
+//import { RouteGuards } from './services/RouteGuardsService';
+import { ProductDashboardComponent } from './components/product-dashboard/product-dashboard.component';
 
 @NgModule({
-  declarations: [AppComponent, AdminLoginComponent, DropdownDirectives],
+  declarations: [
+    AppComponent,
+    AdminLoginComponent,
+    DropdownDirectives,
+    ProductDashboardComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -23,7 +29,7 @@ import { RouteGuards } from './services/RouteGuardsService';
     NgToastModule,
     HttpClientModule,
   ],
-  providers: [AuthService, ApiService, RouteGuards],
+  providers: [AuthService, ApiService], //RouteGuards],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

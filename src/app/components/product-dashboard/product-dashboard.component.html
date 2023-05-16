@@ -1,0 +1,164 @@
+<nav class="navbar navbar-expand-sm shadow bg-dark navbar-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand">Welcome Admin!</a>
+    <ul class="nav navbar-nav navbar-right">
+      <button
+        type="button"
+        class="btn btn-light"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        (click)="clickAddProducts()"
+      >
+        Add new Product
+      </button>
+      <li class="nav-item">
+        <a routerLink="" class="nav-link active"
+          ><i class="fa fa-sign-out" aria-hidden="true" title="logout"></i
+          >Logout</a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="col-xl-3 col-sm-6 col-12" *ngFor="let product of productsList">
+  <div class="card shadow" style="width: 400px">
+    <img
+      class="card-img-top"
+      src="{{ product.productImg }}"
+      alt="Card image"
+      style="width: 100%"
+    />
+    <div class="card-body">
+      <div class="media d-flex">
+        <div class="media-body text-left" style="font-size: 10px">
+          <h4 class="card-title">Name: {{product.ProductName}</h4>
+          <div class="card-text">
+            <h4>MfdDate:{{ product.mfdDate }}</h4>
+            <h4>ExpDate:{{ product.expDate }}</h4>
+            <h4>Price:{{ product.price | currency : "INR" }}</h4>
+            <h4
+              [ngStyle]="
+                product.stock > 20 ? { color: 'green' } : { color: 'red' }
+              "
+            >
+              Stock:{{ product.stock }}
+            </h4>
+          </div>
+          <a href="#" class="btn btn-primary">See Profile</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Product Details</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formValue">
+          <div class="mb-3">
+            <label for="ProductName" class="form-label">Product Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="ProductName"
+              aria-describedby="emailHelp"
+              formControlName="ProductName"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="MfdDate" class="form-label">Mfd Date</label>
+            <input
+              type="text"
+              class="form-control"
+              id="MfdDate"
+              formControlName="MfdDate"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="ExpDate" class="form-label">Exp Date</label>
+            <input
+              type="text"
+              class="form-control"
+              id="ExpDate"
+              formControlName="ExpDate"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="productImg" class="form-label">Image URL</label>
+            <input
+              type="text"
+              class="form-control"
+              id="productImg"
+              formControlName="productImg"
+              #productImg
+            />
+          </div>
+          <div class="mb-3">
+            <img [src]="productImg.value" class="img-responsive" />
+          </div>
+          <div class="mb-3">
+            <label for="Price" class="form-label">Price</label>
+            <input
+              type="number"
+              class="form-control"
+              id="Price"
+              formControlName="Price"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="Stock" class="form-label">Stock</label>
+            <input
+              type="number"
+              class="form-control"
+              id="Stock"
+              formControlName="Stock"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          id="cancel"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          *ngIf="showAdd"
+          (click)="postProductDetails()"
+          class="btn btn-primary"
+        >
+          Add
+        </button>
+        <button
+          type="button"
+          *ngIf="showUpdate"
+          (click)="updateProductDetails()"
+          class="btn btn-primary"
+        >
+          Update
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

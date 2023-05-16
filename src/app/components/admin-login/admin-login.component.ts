@@ -49,7 +49,7 @@ export class AdminLoginComponent implements OnInit {
             detail: 'Success',
             summary: 'Login success',
             sticky: true,
-            position: 'tr',
+            position: 'tc',
           });
           this.route.navigate(['/admindashboard']);
           this.AdminLoginForm.reset();

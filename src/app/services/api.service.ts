@@ -46,13 +46,13 @@ export class ApiService {
       );
   }
 
-  // editProducts(productModelObj, id) {
-  //   return this.http
-  //     .put('https://localhost:7289/api/Products/' + id, productModelObj)
-  //     .pipe(
-  //       map((res: any) => {
-  //         return res;
-  //       })
-  //     );
-  // }
+  editProducts(productModelObj: any, id: number) {
+    return this.http
+      .put('https://localhost:7289/api/Products/' + id, productModelObj)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
 }
