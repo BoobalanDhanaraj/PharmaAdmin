@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="login-container">
+    <form [formGroup]="AdminLoginForm">
+      <h1>ADMIN LOGIN</h1>
+      <div>
+        <label> Admin Id</label>
+
+        <input
+          type="text"
+          name="username"
+          placeholder="Enter your Admin Id"
+          value=""
+          formControlName="AdminId"
+        />
+        <small
+          *ngIf="
+            AdminLoginForm.controls['AdminId'].dirty &&
+            AdminLoginForm.hasError('required', 'AdminId')
+          "
+          class="text-danger"
+          class="text-danger"
+          >*Admin Id is required</small
+        >
+      </div>
+      <div>
+        <label>Admin Password</label>
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter your password here"
+          value=""
+          formControlName="AdminPassword"
+        />
+        <small
+          *ngIf="
+            AdminLoginForm.controls['AdminPassword'].dirty &&
+            AdminLoginForm.hasError('required', 'AdminPassword')
+          "
+          class="text-danger"
+          class="text-danger"
+          >*password is required</small
+        >
+      </div>
+      <button
+        (click)="onAdminLogin()"
+        [disabled]="AdminLoginForm.invalid"
+        type="button"
+        class="btn btn-primary btn-block mt-4 w-100"
+      >
+        Login
+      </button>
+    </form>
+  </div>
+</div>

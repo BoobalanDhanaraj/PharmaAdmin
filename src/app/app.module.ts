@@ -5,9 +5,14 @@ import { NgToastModule } from 'ng-angular-popup';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminLoginComponent } from './components/admin-login/admin-login.component';
+import { DropdownDirectives } from './helpers/dropdown-directive';
+import { AuthService } from './services/auth.service';
+import { ApiService } from './services/api.service';
+import { RouteGuards } from './services/RouteGuardsService';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, AdminLoginComponent, DropdownDirectives],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -18,7 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     NgToastModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [AuthService, ApiService, RouteGuards],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
