@@ -48,11 +48,19 @@ export class ApiService {
 
   editProducts(productModelObj: any, id: number) {
     return this.http
-      .put('https://localhost:7289/api/Products/' + id, productModelObj)
+      .put('https://localhost:7027/api/Products/' + id, productModelObj)
       .pipe(
         map((res: any) => {
           return res;
         })
       );
+  }
+
+  getProductDetails(id: any) {
+    return this.http.get('https://localhost:7027/api/Products/' + id).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
   }
 }

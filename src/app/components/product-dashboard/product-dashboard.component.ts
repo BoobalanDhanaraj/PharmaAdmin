@@ -25,8 +25,8 @@ export class ProductDashboardComponent implements OnInit {
       ProductName: [''],
       MfdDate: [''],
       ExpDate: [''],
-      Price: [''],
       ProductImg: [''],
+      Price: [''],
       Stock: [''],
     });
 
@@ -52,7 +52,7 @@ export class ProductDashboardComponent implements OnInit {
     this.productModelObj.productName = this.formValue.value.ProductName;
     this.productModelObj.mfdDate = this.formValue.value.MfdDate;
     this.productModelObj.expDate = this.formValue.value.ExpDate;
-    this.productModelObj.productImg = this.formValue.value.ProductImg;
+    this.productModelObj.ProductImg = this.formValue.value.ProductImg;
     this.productModelObj.price = this.formValue.value.Price;
     this.productModelObj.stock = this.formValue.value.Stock;
 
@@ -66,6 +66,7 @@ export class ProductDashboardComponent implements OnInit {
         this.getProducts();
       },
       (err) => {
+        console.log(err);
         alert('Something Went wrong');
       }
     );
@@ -75,7 +76,7 @@ export class ProductDashboardComponent implements OnInit {
     this.productModelObj.productName = this.formValue.value.ProductName;
     this.productModelObj.mfdDate = this.formValue.value.MfdDate;
     this.productModelObj.expDate = this.formValue.value.ExpDate;
-    this.productModelObj.productImg = this.formValue.value.ProductImg;
+    this.productModelObj.ProductImg = this.formValue.value.ProductImg;
     this.productModelObj.price = this.formValue.value.Price;
     this.productModelObj.stock = this.formValue.value.Stock;
     this.api
@@ -89,5 +90,27 @@ export class ProductDashboardComponent implements OnInit {
 
         this.getProducts();
       });
+  }
+
+  clickEditProducts() {
+    this.showAdd = false;
+    this.showUpdate = true;
+  }
+
+  deleteProducts(product: any) {
+    this.api.deleteProducts(product.productId).subscribe((res) => {
+      alert('Product Deleted');
+      this.getProducts();
+    });
+  }
+
+  onEdit(product: any) {
+    this.productModelObj.productId = product.productId;
+    this.formValue.controls['ProductName'].setValue(product.productName);
+    this.formValue.controls['MfdDate'].setValue(product.mfdDate);
+    this.formValue.controls['ExpDate'].setValue(product.expDate);
+    this.formValue.controls['ProductImg'].setValue(product.productImg);
+    this.formValue.controls['Price'].setValue(product.price);
+    this.formValue.controls['Stock'].setValue(product.stock);
   }
 }

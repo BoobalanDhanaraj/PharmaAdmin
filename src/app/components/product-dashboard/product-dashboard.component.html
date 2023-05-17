@@ -20,32 +20,44 @@
     </ul>
   </div>
 </nav>
-
-<div class="col-xl-3 col-sm-6 col-12" *ngFor="let product of productsList">
-  <div class="card shadow" style="width: 400px">
+<br /><br />
+<div class="container mt-3" *ngFor="let product of productsList">
+  <div class="card" style="width: 200px">
     <img
-      class="card-img-top"
-      src="{{ product.productImg }}"
-      alt="Card image"
+      class="card-img-top img-responsive"
+      [src]="product.ProductImg"
+      alt="{{ product.productName }}"
       style="width: 100%"
     />
     <div class="card-body">
       <div class="media d-flex">
         <div class="media-body text-left" style="font-size: 10px">
-          <h4 class="card-title">Name: {{product.ProductName}</h4>
+          <h5 class="card-title">Name: {{ product.productName }}</h5>
           <div class="card-text">
             <h4>MfdDate:{{ product.mfdDate }}</h4>
             <h4>ExpDate:{{ product.expDate }}</h4>
             <h4>Price:{{ product.price | currency : "INR" }}</h4>
             <h4
               [ngStyle]="
-                product.stock > 20 ? { color: 'green' } : { color: 'red' }
+                product.stock > 10 ? { color: 'green' } : { color: 'red' }
               "
             >
               Stock:{{ product.stock }}
             </h4>
           </div>
-          <a href="#" class="btn btn-primary">See Profile</a>
+          <button
+            class="btn btn-info"
+            (click)="onEdit(product)"
+            (click)="clickEditProducts()"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            Edit
+          </button>
+          <button (click)="deleteProducts(product)" class="btn btn-danger mx-3">
+            Delete
+          </button>
         </div>
       </div>
     </div>
@@ -106,12 +118,8 @@
               type="text"
               class="form-control"
               id="productImg"
-              formControlName="productImg"
-              #productImg
+              formControlName="ProductImg"
             />
-          </div>
-          <div class="mb-3">
-            <img [src]="productImg.value" class="img-responsive" />
           </div>
           <div class="mb-3">
             <label for="Price" class="form-label">Price</label>
@@ -161,4 +169,13 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="container mt-3" *ngFor="let product of productsList">
+  <img
+    class="card-img-top img-responsive"
+    [src]="product.ProductImg"
+    alt="{{ product.productName }}"
+    style="width: 100%"
+  />
 </div>
