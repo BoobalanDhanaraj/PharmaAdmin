@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/models/product-dashboard';
+import { product } from 'src/app/models/product-dashboard';
 import { ApiService } from 'src/app/services/api.service';
 import { Form, FormBuilder, FormGroup } from '@angular/forms';
 import { Admin } from 'src/app/models/admin';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-dashboard',
@@ -12,11 +13,11 @@ import { Admin } from 'src/app/models/admin';
 export class ProductDashboardComponent implements OnInit {
   admin!: Admin[];
   formValue!: FormGroup;
-  productsList: Product[] = [];
-  productModelObj: Product = new Product();
+  productsList: product[] = [];
+  productModelObj: product = new product();
   showAdd: boolean = false;
   showUpdate: boolean = false;
-  productDetail!: Product;
+  productDetail!: product;
 
   constructor(private formBuilder: FormBuilder, private api: ApiService) {}
 
@@ -52,7 +53,7 @@ export class ProductDashboardComponent implements OnInit {
     this.productModelObj.productName = this.formValue.value.ProductName;
     this.productModelObj.mfdDate = this.formValue.value.MfdDate;
     this.productModelObj.expDate = this.formValue.value.ExpDate;
-    this.productModelObj.ProductImg = this.formValue.value.ProductImg;
+    this.productModelObj.productImg = this.formValue.value.ProductImg;
     this.productModelObj.price = this.formValue.value.Price;
     this.productModelObj.stock = this.formValue.value.Stock;
 
@@ -76,7 +77,7 @@ export class ProductDashboardComponent implements OnInit {
     this.productModelObj.productName = this.formValue.value.ProductName;
     this.productModelObj.mfdDate = this.formValue.value.MfdDate;
     this.productModelObj.expDate = this.formValue.value.ExpDate;
-    this.productModelObj.ProductImg = this.formValue.value.ProductImg;
+    this.productModelObj.productImg = this.formValue.value.ProductImg;
     this.productModelObj.price = this.formValue.value.Price;
     this.productModelObj.stock = this.formValue.value.Stock;
     this.api

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
-import { Product } from '../models/product-dashboard';
+import { product } from '../models/product-dashboard';
 @Injectable({
   providedIn: 'root',
 })
@@ -29,7 +29,7 @@ export class ApiService {
   }
 
   getProducts() {
-    return this.http.get<Product>('https://localhost:7027/api/Products').pipe(
+    return this.http.get<product>('https://localhost:7027/api/Products').pipe(
       map((res: any) => {
         return res;
       })

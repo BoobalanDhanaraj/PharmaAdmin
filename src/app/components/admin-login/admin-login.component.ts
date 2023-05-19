@@ -28,10 +28,15 @@ export class AdminLoginComponent implements OnInit {
 
   AdminAuthenticator!: Admin;
   ngOnInit(): void {
+    document.body.className = 'selector';
     this.AdminLoginForm = this.fb.group({
       AdminId: ['', Validators.required],
       AdminPassword: ['', Validators.required],
     });
+  }
+
+  ngOnDestroy() {
+    document.body.className = '';
   }
 
   onAdminLogin() {

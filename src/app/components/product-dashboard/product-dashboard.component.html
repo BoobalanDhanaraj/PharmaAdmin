@@ -12,57 +12,106 @@
         Add new Product
       </button>
       <li class="nav-item">
-        <a routerLink="" class="nav-link active"
-          ><i class="fa fa-sign-out" aria-hidden="true" title="logout"></i
-          >Logout</a
-        >
+        <a routerLink="" class="nav-link active">
+          Logout <i class="fa fa-sign-out" aria-hidden="true" title="logout"></i
+        ></a>
       </li>
     </ul>
   </div>
 </nav>
+
 <br /><br />
-<div class="container mt-3" *ngFor="let product of productsList">
-  <div class="card" style="width: 200px">
-    <img
-      class="card-img-top img-responsive"
-      [src]="product.ProductImg"
-      alt="{{ product.productName }}"
-      style="width: 100%"
-    />
-    <div class="card-body">
-      <div class="media d-flex">
-        <div class="media-body text-left" style="font-size: 10px">
-          <h5 class="card-title">Name: {{ product.productName }}</h5>
-          <div class="card-text">
-            <h4>MfdDate:{{ product.mfdDate }}</h4>
-            <h4>ExpDate:{{ product.expDate }}</h4>
-            <h4>Price:{{ product.price | currency : "INR" }}</h4>
-            <h4
-              [ngStyle]="
-                product.stock > 10 ? { color: 'green' } : { color: 'red' }
-              "
-            >
-              Stock:{{ product.stock }}
-            </h4>
-          </div>
-          <button
-            class="btn btn-info"
-            (click)="onEdit(product)"
-            (click)="clickEditProducts()"
-            type="button"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
+
+<section style="background-color: #eee">
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div
+        class="col-md-5 col-lg-4 col-xl-4"
+        *ngFor="let product of productsList"
+      >
+        <div class="card shadow" style="border-radius: 10px">
+          <div
+            class="bg-image hover-overlay ripple ripple-surface ripple-surface-light"
+            data-mdb-ripple-color="light"
           >
-            Edit
-          </button>
-          <button (click)="deleteProducts(product)" class="btn btn-danger mx-3">
-            Delete
-          </button>
+            <img
+              [src]="product.productImg"
+              style="
+                border-top-left-radius: 15px;
+                border-top-right-radius: 15px;
+              "
+              class="img-fluid"
+              alt="{{ product.productName }}"
+            />
+            <a>
+              <div class="mask"></div>
+            </a>
+          </div>
+          <div class="card-body pb-0">
+            <div class="d-flex justify-content-between">
+              <div>
+                <h4 class="card-title fw-bold mb-2 text-uppercase">
+                  <a class="text-dark">{{ product.productName }}</a>
+                </h4>
+              </div>
+            </div>
+          </div>
+          <hr class="my-0" />
+          <div class="card-body pb-0">
+            <div class="d-flex justify-content-between">
+              <h6>
+                MfdDate:<br />
+                {{ product.mfdDate }}
+              </h6>
+              <h6>
+                ExpDate:<br />
+                {{ product.expDate }}
+              </h6>
+            </div>
+          </div>
+          <hr class="my-0" />
+          <div class="card-body pb-0">
+            <div class="d-flex justify-content-between">
+              <h6>Price: {{ product.price | currency : "INR" }}</h6>
+              <h4
+                [ngStyle]="
+                  product.stock > 10 ? { color: 'green' } : { color: 'red' }
+                "
+              >
+                Stock: {{ product.stock }}
+              </h4>
+            </div>
+          </div>
+          <hr class="my-0" />
+          <div class="card-body">
+            <div
+              class="d-flex justify-content-between align-items-center pb-2 mb-1"
+            >
+              <button
+                class="btn btn-info"
+                (click)="onEdit(product)"
+                (click)="clickEditProducts()"
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                Edit
+              </button>
+              <button
+                (click)="deleteProducts(product)"
+                class="btn btn-danger mx-3"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
         </div>
+        <br />
       </div>
     </div>
   </div>
-</div>
+</section>
+<br />
 
 <div
   class="modal fade"
@@ -119,6 +168,14 @@
               class="form-control"
               id="productImg"
               formControlName="ProductImg"
+              #productImg
+            />
+          </div>
+          <div class="mb-3">
+            <img
+              [src]="productImg.value"
+              class="img-responsive"
+              style="width: 100%"
             />
           </div>
           <div class="mb-3">
@@ -171,11 +228,17 @@
   </div>
 </div>
 
-<div class="container mt-3" *ngFor="let product of productsList">
-  <img
-    class="card-img-top img-responsive"
-    [src]="product.ProductImg"
-    alt="{{ product.productName }}"
-    style="width: 100%"
-  />
-</div>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css"
+/>
+<link
+  href="https://fonts.googleapis.com/css?family=Montserrat&display=swap"
+  rel="stylesheet"
+/>
