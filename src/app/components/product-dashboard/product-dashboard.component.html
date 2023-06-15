@@ -3,18 +3,26 @@
     <a class="navbar-brand">Welcome Admin!</a>
     <ul class="nav navbar-nav navbar-right">
       <button
+        id="b2"
         type="button"
         class="btn btn-light"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
         (click)="clickAddProducts()"
       >
-        Add new Product
+        New Product
       </button>
       <li class="nav-item">
-        <a routerLink="" class="nav-link active">
-          Logout <i class="fa fa-sign-out" aria-hidden="true" title="logout"></i
-        ></a>
+        <button routerLink="" class="b5">
+          <div class="sig">
+            <svg viewBox="0 0 512 512">
+              <path
+                d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"
+              ></path>
+            </svg>
+          </div>
+          <div class="tx">Logout</div>
+        </button>
       </li>
     </ul>
   </div>
@@ -61,11 +69,11 @@
             <div class="d-flex justify-content-between">
               <h6>
                 MfdDate:<br />
-                {{ product.mfdDate }}
+                {{ product.mfdDate | date }}
               </h6>
               <h6>
                 ExpDate:<br />
-                {{ product.expDate }}
+                {{ product.expDate | date }}
               </h6>
             </div>
           </div>
@@ -88,20 +96,41 @@
               class="d-flex justify-content-between align-items-center pb-2 mb-1"
             >
               <button
-                class="btn btn-info"
+                id="b3"
+                class="edit-button"
                 (click)="onEdit(product)"
                 (click)="clickEditProducts()"
                 type="button"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
               >
-                Edit
+                <svg class="edit-svgIcon" viewBox="0 0 512 512">
+                  <path
+                    d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"
+                  ></path>
+                </svg>
               </button>
-              <button
-                (click)="deleteProducts(product)"
-                class="btn btn-danger mx-3"
-              >
-                Delete
+              <button (click)="deleteProducts(product)" class="delBtn">
+                <p class="parag">delete</p>
+                <span class="ic-wrapper">
+                  <svg
+                    class="ic"
+                    width="30px"
+                    height="30px"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      class="ic path"
+                      d="M6 7V18C6 19.1046 6.89543 20 8 20H16C17.1046 20 18 19.1046 18 18V7M6 7H5M6 7H8M18 7H19M18 7H16M10 11V16M14 11V16M8 7V5C8 3.89543 8.89543 3 10 3H14C15.1046 3 16 3.89543 16 5V7M8 7H16"
+                      stroke="#000000"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </span>
               </button>
             </div>
           </div>
@@ -123,7 +152,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Product Details</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">New Product</h1>
         <button
           type="button"
           class="btn-close"
@@ -143,23 +172,52 @@
               formControlName="ProductName"
             />
           </div>
-          <div class="mb-3">
-            <label for="MfdDate" class="form-label">Mfd Date</label>
-            <input
+          <div class="row">
+            <div class="col sm-1">
+              <!-- <label for="MfdDate" class="form-label">Mfd Date</label> -->
+              <mat-form-field>
+                <mat-label>Manufactured date</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="Mfdpicker"
+                  id="MfdDate"
+                  formControlName="MfdDate"
+                />
+                <mat-datepicker-toggle
+                  matIconSuffix
+                  [for]="Mfdpicker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #Mfdpicker></mat-datepicker>
+              </mat-form-field>
+              <!-- <input
               type="text"
               class="form-control"
               id="MfdDate"
               formControlName="MfdDate"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="ExpDate" class="form-label">Exp Date</label>
-            <input
-              type="text"
-              class="form-control"
-              id="ExpDate"
-              formControlName="ExpDate"
-            />
+            /> -->
+            </div>
+            <div class="col sm-1">
+              <mat-form-field>
+                <mat-label>Expiry date</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="ExpPicker"
+                  id="ExpDate"
+                  formControlName="ExpDate"
+                />
+                <mat-datepicker-toggle
+                  matIconSuffix
+                  [for]="ExpPicker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #ExpPicker></mat-datepicker>
+              </mat-form-field>
+              <!-- <input
+                type="text"
+                class="form-control"
+                id="ExpDate"
+                formControlName="ExpDate"
+              /> -->
+            </div>
           </div>
           <div class="mb-3">
             <label for="productImg" class="form-label">Image URL</label>
@@ -208,13 +266,20 @@
           Close
         </button>
         <button
+          id="b1"
           type="button"
           *ngIf="showAdd"
           (click)="postProductDetails()"
           class="btn btn-primary"
         >
-          Add
+          <span class="circle1"></span>
+          <span class="circle2"></span>
+          <span class="circle3"></span>
+          <span class="circle4"></span>
+          <span class="circle5"></span>
+          <span class="text">Add</span>
         </button>
+
         <button
           type="button"
           *ngIf="showUpdate"

@@ -9,8 +9,13 @@ import { AdminLoginComponent } from './components/admin-login/admin-login.compon
 import { DropdownDirectives } from './helpers/dropdown-directive';
 import { AuthService } from './services/auth.service';
 import { ApiService } from './services/api.service';
-//import { RouteGuards } from './services/RouteGuardsService';
+import { RouteGuards } from './services/RouteGuardsService';
 import { ProductDashboardComponent } from './components/product-dashboard/product-dashboard.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -28,8 +33,13 @@ import { ProductDashboardComponent } from './components/product-dashboard/produc
     ReactiveFormsModule,
     NgToastModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
-  providers: [AuthService, ApiService], //RouteGuards],
+  providers: [AuthService, ApiService, RouteGuards],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
