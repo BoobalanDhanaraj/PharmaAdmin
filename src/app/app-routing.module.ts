@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: 'admindashboard',
     component: ProductDashboardComponent,
-    //canActivate: [RouteGuards],
+    canActivate: [RouteGuards],
   },
 ];
 
