@@ -173,9 +173,9 @@
             />
           </div>
           <div class="row">
-            <div class="col sm-1">
+            <div class="mb-3">
               <!-- <label for="MfdDate" class="form-label">Mfd Date</label> -->
-              <mat-form-field>
+              <mat-form-field class="ManufacDate">
                 <mat-label>Manufactured date</mat-label>
                 <input
                   matInput
@@ -189,15 +189,9 @@
                 ></mat-datepicker-toggle>
                 <mat-datepicker #Mfdpicker></mat-datepicker>
               </mat-form-field>
-              <!-- <input
-              type="text"
-              class="form-control"
-              id="MfdDate"
-              formControlName="MfdDate"
-            /> -->
             </div>
-            <div class="col sm-1">
-              <mat-form-field>
+            <div class="mb-3">
+              <mat-form-field class="ExpiryDate">
                 <mat-label>Expiry date</mat-label>
                 <input
                   matInput
@@ -211,12 +205,6 @@
                 ></mat-datepicker-toggle>
                 <mat-datepicker #ExpPicker></mat-datepicker>
               </mat-form-field>
-              <!-- <input
-                type="text"
-                class="form-control"
-                id="ExpDate"
-                formControlName="ExpDate"
-              /> -->
             </div>
           </div>
           <div class="mb-3">

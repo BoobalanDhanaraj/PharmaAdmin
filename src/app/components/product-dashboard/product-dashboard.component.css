@@ -339,3 +339,12 @@ div.media-body h4 {
 .b5:active {
   transform: translate(2px, 2px);
 }
+
+/* Datepicker */
+.ManufacDate {
+  width: 100%;
+}
+
+.ExpiryDate {
+  width: 100%;
+}
